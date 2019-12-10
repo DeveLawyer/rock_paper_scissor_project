@@ -26,31 +26,39 @@
         }
 
         function playRound(playerSelection, computerSelection) {
-            switch (playerSelection.toUpperCase()) {
-                case "ROCK":
-                    if (computerSelection.toUpperCase() != "PAPER") {
-                        return `You Win! ${playerSelection.toUpperCase()} beats ${computerSelection.toUpperCase()}`;
-                    } else {
-                        return `You Lose! ${computerSelection.toUpperCase()} beats ${playerSelection.toUpperCase()}`;
-                    }
-                    break;
-                case "PAPER":
-                if (computerSelection.toUpperCase() != "SCISSORS") {
-                        return `You Win! ${playerSelection.toUpperCase()} beats ${computerSelection.toUpperCase()}`;
-                    } else {
-                        return `You Lose! ${computerSelection.toUpperCase()} beats ${playerSelection.toUpperCase()}`;
-                    }
-                    break;
-                case "SCISSORS":
-                if (computerSelection.toUpperCase() != "ROCK") {
-                        return `You Win! ${playerSelection.toUpperCase()} beats ${computerSelection.toUpperCase()}`;
-                    } else {
-                        return `You Lose! ${computerSelection.toUpperCase()} beats ${playerSelection.toUpperCase()}`;
-                    }
-                    break;              
+            let youWin = `You Win! ${playerSelection.toUpperCase()} beats ${computerSelection.toUpperCase()}`;
+            let youLose = `You Lose! ${computerSelection.toUpperCase()} beats ${playerSelection.toUpperCase()}`;
+            let tie = "It's a Tie!";
+            
+            if (computerSelection.toUpperCase() == playerSelection.toUpperCase()) {
+                return tie;
+            } else {
+                switch (playerSelection.toUpperCase()) {
+                    case "ROCK":
+                        if (computerSelection.toUpperCase() == "PAPER") {
+                            return youLose;
+                        } else {
+                            return youWin; 
+                        }
+                        break;
+                    case "PAPER":
+                        if (computerSelection.toUpperCase() == "SCISSORS") {
+                            return youLose;
+                        } else {
+                            return youWin; 
+                        }
+                        break;
+                    case "SCISSORS":
+                        if (computerSelection.toUpperCase() == "ROCK") {
+                            return youLose;
+                        } else {
+                            return youWin; 
+                        }
+                        break;
+                }            
             }
         }
-        
+            
         const playerSelection = prompt("Rock, paper or scissors?");
         const computerSelection = computerPlay();
         console.log(playRound(playerSelection, computerSelection));
